@@ -10,7 +10,7 @@ def combine_csv(path,filename):
     #filename = desired file name, must end with .csv
     """
     
-    files = [path+"/"+f for f in listdir(src) if f.endswith(".csv")]
-    keys = pd.concat([pd.read_csv(f) for f in files])
-    assert filename.endswith(".csv"), "Incorrect file format. Must end filename with .csv"
-    keys.to_csv(path+"/"+ filename, index=False,encoding="utf-8-sig")
+    files = [path+"/"+f for f in listdir(src) if f.endswith(".csv")] # in a list comprehension, loop through all files that end with .csv given path
+    combined = pd.concat([pd.read_csv(f) for f in files]) #concatenate all lines read from a list comprehension that reads multiple .csv files
+    assert filename.endswith(".csv"), "Incorrect file format. Must end filename with .csv" #sanity check - check if the filename has the correct extension
+    combined.to_csv(path+"/"+ filename, index=False,encoding="utf-8-sig") #output
